@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-nodeapp
+  labels:
+    app: deploy-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deploy-app
+  template:
+    metadata:
+      labels:
+        app: deploy-app 
+    spec:
+      containers:
+      - name: nodeserver
+        image: thilina9718/deploy-app:latest
+        ports:
+        - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-nodeapp
+spec:
+  selector:
+    app: deploy-app
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 3000
+    nodePort: 31110
