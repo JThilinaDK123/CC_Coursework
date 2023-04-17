@@ -15,6 +15,10 @@ spec:
         app: deploy-app 
     spec:
       containers:
+      - command:
+        - "tail"
+        - "-f"
+        - "/dev/null"
       - name: nodeserver
         image: thilina9718/deploy-app:latest
         ports:
