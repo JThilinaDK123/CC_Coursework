@@ -5,4 +5,4 @@ docker push thilina9718/deploy-app:latest
 docker push thilina9718/deploy-app:$SHA
 
 kubectl apply -f deployment.yml
-#kubectl set image deployments/deployment-nodeapp server = thilina9718/deploy-app:$SHA
+kubectl set image deployments/service-nodeapp server = thilina9718/deploy-app:$SHA
